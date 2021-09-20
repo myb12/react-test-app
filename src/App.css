@@ -1,5 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&display=swap');
+
+
+*{
+  box-sizing: border-box;
+}
+body{
+  box-sizing: border-box;
+  color: #4a4a4a;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.top-heading{
+   font-family: "Bigelow Rules";
+}
 .App {
   text-align: center;
+  position: relative;
+  padding-bottom: 100px;
 }
 
 .App-logo {
@@ -28,11 +49,21 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cards{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-gap: 30px;
+    z-index: 1;
+    margin: 50px 50px 0 50px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(0.5px);
+  transition: all 0.8s ease-in-out;
 }
