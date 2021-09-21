@@ -38,7 +38,6 @@
   box-shadow: 0px 16px 10px 0px rgb(0 0 0 / 14%), 0px 11px 18px 0px rgb(0 0 0 / 12%), 0px 13px 5px -1px rgb(0 0 0 / 20%);
   background-color: #fff;
   width: 365px;
-  
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -103,7 +102,7 @@
   order:2;
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width:600px) {
   .sidebar{
     width:250px;
   }
