@@ -26,7 +26,9 @@ function App() {
   }, [charge]);
 
   const handleSidebar = () => setOpensidebar(!openSidebar);
+  
   const sidebarOpen = () => setOpensidebar(true);
+
   const sidebarClose = (e) => {
     setOpensidebar(false);
     e.target.closest('.sidebar').scrollTo(0, 0);
