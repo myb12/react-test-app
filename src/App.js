@@ -27,11 +27,13 @@ function App() {
 
 
   const handleSidebar = () => setOpensidebar(!openSidebar);
+  const sidebarOpen = () => setOpensidebar(true);
+  const sidebarClose = () => setOpensidebar(false);
 
   return (
     <div className="App">
       <div className={openSidebar ? 'overlay' : ''} onClick={handleSidebar}></div>
-      <Sidebar openSidebar={openSidebar} handleSidebar={handleSidebar} />
+      <Sidebar openSidebar={openSidebar} handleSidebar={handleSidebar} sidebarOpen={sidebarOpen} sidebarClose={sidebarClose} />
       <Navbar openSidebar={openSidebar} handleSidebar={handleSidebar} />
       <h1 className="top-heading">Data from json placeholder</h1>
       <h3>Charge: {charge}%</h3>
