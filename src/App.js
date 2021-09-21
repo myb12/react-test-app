@@ -25,17 +25,19 @@ function App() {
     if (charge < 0) setcharge(100);
   }, [charge]);
 
-
   const handleSidebar = () => setOpensidebar(!openSidebar);
   const sidebarOpen = () => setOpensidebar(true);
-  const sidebarClose = () => setOpensidebar(false);
+  const sidebarClose = (e) => {
+    setOpensidebar(false);
+    e.target.closest('.sidebar').scrollTo(0, 0);
+  }
 
   return (
     <div className="App">
       <div className={openSidebar ? 'overlay' : ''} onClick={handleSidebar}></div>
       <Sidebar openSidebar={openSidebar} handleSidebar={handleSidebar} sidebarOpen={sidebarOpen} sidebarClose={sidebarClose} />
       <Navbar openSidebar={openSidebar} handleSidebar={handleSidebar} />
-      <h1 className="top-heading">Data from json placeholder</h1>
+      <h1 className="top-heading" style={{ paddingTop: '70px' }}>Data from json placeholder</h1>
       <h3>Charge: {charge}%</h3>
       <Button handleClick={handleClick} text={charge ? 'Battery Down' : 'Charge up'} />
       <div className="cards">
