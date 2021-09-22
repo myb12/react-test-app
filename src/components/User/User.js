@@ -22,7 +22,7 @@ const User = ({ user }) => {
             const isExist = getStorageItem(user.name);
             setUserOnStorage(isExist);
         }
-    }, [])
+    }, [user.id, user.name, id])
 
     const addToStorage = (id) => {
         if (user.id === id) {
