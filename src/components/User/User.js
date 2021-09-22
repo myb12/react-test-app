@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react';
 import { getStorageItem, setStorageItem } from '../../utilities/Storage';
 import Button from '../Button/Button';
 import './User.css';
@@ -9,35 +10,41 @@ const User = ({ user }) => {
     const companyName = user.company.name;
     const { city } = user.address;
 
-    // setUserOnStorage(getStorageItem(user.name));
-    // if (user.id === id) {
-    //     const isExist = getStorageItem(user.name);
-    //     if (isExist) {
-    //         setUserOnStorage(true);
-    //     }
-    // }
-
     useEffect(() => {
-        if (user.id === id) {
-            const isExist = getStorageItem(user.name);
-            setUserOnStorage(isExist);
+        const specificUser = JSON.parse(getStorageItem(user.name));
+        if (!specificUser) {
+            setUserOnStorage(false);
         }
-    }, [user.id, user.name, id])
+        if (id === specificUser?.id) {
+            setUserOnStorage(true);
+        }
+
+    }, [id, setUserOnStorage, user.id, user.name]);
 
     const addToStorage = (id) => {
-        if (user.id === id) {
-            if (getStorageItem(user.name)) {
-                const count = +getStorageItem(user.name);
+        const userObj = {};
+        const isExist = getStorageItem(user.name);
+        if (isExist) {
+            const specificUser = JSON.parse(getStorageItem(user.name));
+            if (id === specificUser.id) {
+                const count = +specificUser.quantity;
                 const newCount = count + 1;
-                setStorageItem(user.name, newCount);
-            } else {
-                setStorageItem(user.name, 1);
+                userObj.id = id;
+                userObj.quantity = newCount;
+                setStorageItem(user.name, JSON.stringify(userObj));
+                setUserOnStorage(true);
             }
+        } else {
+            userObj.id = id;
+            userObj.quantity = 1;
+            setStorageItem(user.name, JSON.stringify(userObj));
+            setUserOnStorage(true);
         }
     }
 
     const removeFromStorage = (id) => {
         if (user.id === id) localStorage.removeItem(user.name);
+        setUserOnStorage(false);
     }
     return (
         <div className="card">
@@ -50,9 +57,9 @@ const User = ({ user }) => {
             <h5>Address: {city}</h5>
             <h6>Email: {email}</h6>
             <div className="buttons">
-                <Button text="Add User" handleChange={() => addToStorage(id)} />
+                <Button text="Add User" handleAdd={() => addToStorage(id)} />
                 {
-                    userOnStorage ? <Button text="Remove User" btnSm="btn-sm" handleChange={() => removeFromStorage(id)} /> : ''
+                    userOnStorage ? <Button text="Remove User" btnSm="btn-sm" handleRemove={() => removeFromStorage(id)} /> : ''
                 }
             </div>
         </div>
