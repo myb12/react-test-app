@@ -12,9 +12,7 @@ const User = ({ user }) => {
 
     useEffect(() => {
         const specificUser = JSON.parse(getStorageItem(user.name));
-        if (!specificUser) {
-            setUserOnStorage(false);
-        }
+        
         if (id === specificUser?.id) {
             setUserOnStorage(true);
         }
@@ -57,7 +55,7 @@ const User = ({ user }) => {
             <h5>Address: {city}</h5>
             <h6>Email: {email}</h6>
             <div className="buttons">
-                <Button text="Add User" handleAdd={() => addToStorage(id)} />
+                <Button text="Add User" btnSm="btn-sm" handleAdd={() => addToStorage(id)} />
                 {
                     userOnStorage ? <Button text="Remove User" btnSm="btn-sm" handleRemove={() => removeFromStorage(id)} /> : ''
                 }
