@@ -1,10 +1,10 @@
 import React from 'react';
 import './Button.css';
 
-export default function Button({ handleClick, text }) {
+export default function Button({ handleClick, handleChange, text, btnSm }) {
     return (
         <div>
-            <button className="custom-button" onClick={handleClick}>{text}</button>
-        </div>
+            <button className={`custom-button ${btnSm}`} onClick={handleClick || handleChange}>{text}</button>
+        </div >
     )
 }

@@ -9,6 +9,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [charge, setcharge] = useState(100);
   const [openSidebar, setOpensidebar] = useState(false);
+  
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -44,7 +45,7 @@ function App() {
       <Button handleClick={handleClick} text={charge ? 'Battery Down' : 'Charge up'} />
       <div className="cards">
         {
-          users.map((user) => <User key={user.id} id={user.id} name={user.name} company={user.company.name} address={user.address.city} email={user.email} />)
+          users.map((user) => <User key={user.id} user={user} />)
         }
       </div>
     </div>
